@@ -2,7 +2,7 @@
 
 namespace Northwind.Repository.Common.Interface
 {
-    public interface IDatabaseConnection
+    public interface IDatabaseConnectionHelper
     {
         IDbConnection Create();
     }

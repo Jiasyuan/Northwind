@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Northwind.Repository.Common.Helper
 {
-    public class NorthwindDbConnectionHelper : IDatabaseConnection
+    public class NorthwindDbConnectionHelper : IDatabaseConnectionHelper
     {
         private readonly string _connectionString;
 
