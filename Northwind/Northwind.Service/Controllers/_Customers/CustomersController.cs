@@ -17,6 +17,7 @@ namespace Northwind.Service.Controllers
         /// Get All Customers
         /// </summary>
         /// <returns></returns>
+        [HttpGet, ActionName("GetAllCustomers")]
         public IEnumerable<Customer> GetAllCustomers()
         {
             try
@@ -37,7 +38,8 @@ namespace Northwind.Service.Controllers
         /// </summary>
         /// <param name="customerID">PK</param>
         /// <returns></returns>
-        public Customer GetCustomer(string customerID)
+        [HttpGet, ActionName("GetCustomer")]
+        public Customer GetCustomer([FromUri(Name ="id")]string customerID)
         {
             try
             {
@@ -57,8 +59,8 @@ namespace Northwind.Service.Controllers
         /// Create New Customer
         /// </summary>
         /// <param name="customerData"></param>
-        [HttpPost]
-        public bool CreateNewCustomer(Customer customerData)
+        [HttpPost, ActionName("CreateNewCustomer")]
+        public bool CreateNewCustomer([FromBody]Customer customerData)
         {
             bool issuccess = false;
             try
@@ -76,7 +78,7 @@ namespace Northwind.Service.Controllers
         /// UpdateCustomer
         /// </summary>
         /// <param name="customerData"></param>
-        [HttpPost]
+        [HttpPost, ActionName("UpdateCustomer")]
         public bool UpdateCustomer(Customer customerData)
         {
             bool issuccess = false;
@@ -95,7 +97,8 @@ namespace Northwind.Service.Controllers
         /// Delete Customer
         /// </summary>
         /// <param name="customerID">PK</param>
-        public bool DeleteCustomer(string customerID)
+        [HttpGet, ActionName("DeleteCustomer")]
+        public bool DeleteCustomer([FromUri(Name ="id")]string customerID)
         {
             bool issuccess = false;
             try

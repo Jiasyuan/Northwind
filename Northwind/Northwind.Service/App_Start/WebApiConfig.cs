@@ -15,10 +15,19 @@ namespace Northwind.Service
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+name: "ActionApi",
+routeTemplate: "api/{controller}/{action}/{id}",
+defaults: new { action = "Default", id = RouteParameter.Optional }
+
+);
+            
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+  
+
         }
     }
 }
