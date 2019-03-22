@@ -42,6 +42,16 @@ namespace Northwind.UnitTest.Repository
             Assert.True(result);
         }
 
+        [Test]
+        [TestCaseSource("UpdateCustomerTestData")]
+        public void TestUpdateCustomer(CustomersDto customersDto)
+        {
+            IDatabaseConnectionHelper databaseConnectionHelper = new NorthwindDbConnectionHelper();
+            CustomersRepository customersRepository = new CustomersRepository(databaseConnectionHelper);
+            var result = customersRepository.UpdateCustomer(customersDto);
+            Assert.True(result);
+        }
+
         public static IEnumerable InsertNewCustomerTestData
         {
             get
@@ -58,6 +68,27 @@ namespace Northwind.UnitTest.Repository
                     Country = "TW",
                     Phone = "24000000",
                     Fax = "24000001"
+                });
+            }
+        }
+
+        public static IEnumerable UpdateCustomerTestData
+        {
+            get
+            {
+                yield return new TestCaseData(new CustomersDto()
+                {
+                    CustomerID = "AAAAA",
+                    CompanyName = "UpdateCompany",
+                    ContactName = "Dirk",
+                    ContactTitle = "Owner/Marketing Assistant",
+                    Address = "Forsterstr. 57 45",
+                    City = "Taipei",
+                    Region = "Da'an ",
+                    PostalCode = "10649",
+                    Country = "TW",
+                    Phone = "2700000",
+                    Fax = "27000001"
                 });
             }
         }

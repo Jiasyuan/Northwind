@@ -121,5 +121,45 @@ namespace Northwind.Repository.Repository
             }
             return result;
         }
+
+
+        public bool UpdateCustomer(CustomersDto customersDto)
+        {
+            bool result = false;
+            string sqlCommand = @"UPDATE [dbo].[Customers]
+                                                        SET [CompanyName] = @CompanyName
+                                                          ,[ContactName] = @ContactName
+                                                          ,[ContactTitle] = @ContactTitle
+                                                          ,[Address] = @Address
+                                                          ,[City] = @City
+                                                          ,[Region] = @Region
+                                                          ,[PostalCode] = @PostalCode
+                                                          ,[Country] = @Country
+                                                          ,[Phone] = @Phone
+                                                          ,[Fax] = @Fax
+                                                     WHERE [CustomerID]= @CustomerID";
+            var dynamicParams = new DynamicParameters();
+            dynamicParams.Add("CustomerID", customersDto.CustomerID, DbType.String);
+            dynamicParams.Add("CompanyName", customersDto.CompanyName, DbType.String);
+            dynamicParams.Add("ContactName", customersDto.ContactName, DbType.String);
+            dynamicParams.Add("ContactTitle", customersDto.ContactTitle, DbType.String);
+            dynamicParams.Add("Address", customersDto.Address, DbType.String);
+            dynamicParams.Add("City", customersDto.City, DbType.String);
+            dynamicParams.Add("Region", customersDto.Region, DbType.String);
+            dynamicParams.Add("PostalCode", customersDto.PostalCode, DbType.String);
+            dynamicParams.Add("Country", customersDto.Country, DbType.String);
+            dynamicParams.Add("Phone", customersDto.Phone, DbType.String);
+            dynamicParams.Add("Fax", customersDto.Fax, DbType.String);
+            var dbConnection = this.DatabaseConnection.Create();
+            using (TransactionScope scope = new TransactionScope())
+            {
+                using (var conn = dbConnection)
+                {
+                    result = conn.Execute(sqlCommand, dynamicParams) > 0;
+                }
+                scope.Complete();
+            }
+            return result;
+        }
     }
 }
