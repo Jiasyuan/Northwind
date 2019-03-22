@@ -52,6 +52,7 @@
     <Compile Include="Common\Interface\IDatabaseConnectionHelper.cs" />
     <Compile Include="DTO\CustomersDto.cs" />
     <Compile Include="Enum\DataBaseEnum.cs" />
+    <Compile Include="Factory\CustomersFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CustomersRepository.cs" />
   </ItemGroup>
