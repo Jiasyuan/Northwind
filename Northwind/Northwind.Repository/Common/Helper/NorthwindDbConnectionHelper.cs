@@ -9,9 +9,9 @@ namespace Northwind.Repository.Common.Helper
     {
         private readonly string _connectionString;
 
-        public NorthwindDbConnectionHelper(DataBaseEnum dataBase)
+        public NorthwindDbConnectionHelper()
         {
-            this._connectionString = new ConnectionStringFactory().GetConnectionString(dataBase);
+            this._connectionString = new ConnectionStringFactory().GetConnectionString(DataBaseEnum.Northwind);
         }
 
         /// <summary>
