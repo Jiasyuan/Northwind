@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Northwind.Repository.Common.Interface;
 using Northwind.Repository.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Transactions;
 
 namespace Northwind.Repository.Repository
 {
-    public class CustomersRepository
+    public class CustomersRepository : IDisposable
     {
         private IDatabaseConnectionHelper DatabaseConnection { get; }
 
@@ -16,6 +17,32 @@ namespace Northwind.Repository.Repository
         {
             this.DatabaseConnection = databaseConnectionHelper;
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; 
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    return;
+                }
+                disposedValue = true;
+            }
+        }
+        ~CustomersRepository()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
 
         /// <summary>
         /// Get all Customers
