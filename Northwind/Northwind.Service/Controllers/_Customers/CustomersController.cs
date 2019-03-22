@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Northwind.Contract.Model;
+using Northwind.Repository.DTO;
+using Northwind.Repository.Factory;
+using Northwind.Service.Common;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using Northwind.Contract.Model;
-using Northwind.Repository.;
 
 namespace Northwind.Service.Controllers
 {
@@ -14,31 +13,100 @@ namespace Northwind.Service.Controllers
     /// </summary>
     public class CustomersController : ApiController
     {
-        // GET api/<controller>
+        /// <summary>
+        /// Get All Customers
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Customer> GetAllCustomers()
         {
-            return null;
+            try
+            {
+                var queryResult = CustomersFactory.CustomersRepository.GetAll();
+                var result = MapperHelper.MapperProperties<CustomersDto, Customer>(queryResult);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                ////TODO:write log
+                return null;
+            }
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        /// <summary>
+        /// Get Customer
+        /// </summary>
+        /// <param name="customerID">PK</param>
+        /// <returns></returns>
+        public Customer GetCustomer(string customerID)
         {
-            return "value";
+            try
+            {
+                var queryResult = CustomersFactory.CustomersRepository.GetCustomer(customerID);
+                var result = MapperHelper.MapperProperties<CustomersDto, Customer>(queryResult);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                //TODO:write log
+                return null;
+            }
+            
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        /// <summary>
+        /// Create New Customer
+        /// </summary>
+        /// <param name="customerData"></param>
+        [HttpPost]
+        public bool CreateNewCustomer(Customer customerData)
         {
+            bool issuccess = false;
+            try
+            {
+                issuccess = CustomersFactory.CustomersRepository.InsertNewCustomer(MapperHelper.MapperProperties<Customer, CustomersDto>(customerData));
+            }
+            catch(Exception ex)
+            {
+                //TODO:write log
+            }
+            return issuccess;
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        /// <summary>
+        /// UpdateCustomer
+        /// </summary>
+        /// <param name="customerData"></param>
+        [HttpPost]
+        public bool UpdateCustomer(Customer customerData)
         {
+            bool issuccess = false;
+            try
+            {
+                issuccess = CustomersFactory.CustomersRepository.UpdateCustomer(MapperHelper.MapperProperties<Customer, CustomersDto>(customerData));
+            }
+            catch (Exception ex)
+            {
+                //TODO:write log
+            }
+            return issuccess;
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        /// <summary>
+        /// Delete Customer
+        /// </summary>
+        /// <param name="customerID">PK</param>
+        public bool DeleteCustomer(string customerID)
         {
+            bool issuccess = false;
+            try
+            {
+                issuccess = CustomersFactory.CustomersRepository.DeleteCustomer(customerID);
+            }
+            catch (Exception ex)
+            {
+                //TODO:write log
+            }
+            return issuccess;
         }
     }
 }
