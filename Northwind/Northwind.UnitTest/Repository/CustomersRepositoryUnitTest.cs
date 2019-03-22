@@ -15,8 +15,20 @@ namespace Northwind.UnitTest.Repository
             IDatabaseConnectionHelper databaseConnectionHelper = new NorthwindDbConnectionHelper();
             CustomersRepository customersRepository = new CustomersRepository(databaseConnectionHelper);
             var result = customersRepository.GetAll();
-            Assert.True((result != null || result.Count() != 0));
+            Assert.True((result != null && result.Count() != 0));
           
         }
+
+        [Test]
+        [TestCase("WOLZA")]
+        [TestCase("WILMK")]
+        public void TestGetCustomerByPK(string customerID)
+        {
+            IDatabaseConnectionHelper databaseConnectionHelper = new NorthwindDbConnectionHelper();
+            CustomersRepository customersRepository = new CustomersRepository(databaseConnectionHelper);
+            var result = customersRepository.GetCustomer(customerID);
+            Assert.True((result != null && result.CustomerID == customerID));
+        }
+
     }
 }
