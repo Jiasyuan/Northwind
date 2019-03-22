@@ -281,6 +281,16 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Northwind.Contract\Northwind.Contract.csproj">
+      <Project>{0cd8629a-f69a-4b03-9ab3-987b4d5a0c85}</Project>
+      <Name>Northwind.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind.Repository\Northwind.Repository.csproj">
+      <Project>{287b6bf8-af10-494d-bfda-1f54118a9af2}</Project>
+      <Name>Northwind.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
