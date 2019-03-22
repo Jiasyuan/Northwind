@@ -64,12 +64,16 @@ namespace Northwind.Repository.Repository
             var dbConnection = this.DatabaseConnection.Create();
             using (var conn = dbConnection)
             {
-                var result = conn.Query<CustomersDto>(sqlCommand,new { customerID }).FirstOrDefault();
+                var result = conn.Query<CustomersDto>(sqlCommand, new { customerID }).FirstOrDefault();
                 return result;
             }
         }
 
-      
+        /// <summary>
+        /// Insert New Customer
+        /// </summary>
+        /// <param name="customersDto"></param>
+        /// <returns></returns>
         public bool InsertNewCustomer(CustomersDto customersDto)
         {
             bool result = false;
@@ -122,7 +126,11 @@ namespace Northwind.Repository.Repository
             return result;
         }
 
-
+        /// <summary>
+        /// Update Customer
+        /// </summary>
+        /// <param name="customersDto"></param>
+        /// <returns></returns>
         public bool UpdateCustomer(CustomersDto customersDto)
         {
             bool result = false;
@@ -156,6 +164,30 @@ namespace Northwind.Repository.Repository
                 using (var conn = dbConnection)
                 {
                     result = conn.Execute(sqlCommand, dynamicParams) > 0;
+                }
+                scope.Complete();
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Delete Customer By PK
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <returns></returns>
+        public bool DeleteCustomer(string customerID)
+        {
+            bool result = false;
+            string sqlCommand = @"DELETE FROM [dbo].[Customers]
+                                                     WHERE [CustomerID]= @customerID";
+
+            var dbConnection = this.DatabaseConnection.Create();
+            using (TransactionScope scope = new TransactionScope())
+            {
+                using (var conn = dbConnection)
+                {
+                    result = conn.Execute(sqlCommand, new { customerID }) > 0;
                 }
                 scope.Complete();
             }

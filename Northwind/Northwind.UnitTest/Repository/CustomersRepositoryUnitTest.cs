@@ -52,6 +52,16 @@ namespace Northwind.UnitTest.Repository
             Assert.True(result);
         }
 
+        [Test]
+        [TestCase("AAAAA")]
+        public void TestDeleteCustomerByPK(string customerID)
+        {
+            IDatabaseConnectionHelper databaseConnectionHelper = new NorthwindDbConnectionHelper();
+            CustomersRepository customersRepository = new CustomersRepository(databaseConnectionHelper);
+            var result = customersRepository.DeleteCustomer(customerID);
+            Assert.True(result);
+        }
+
         public static IEnumerable InsertNewCustomerTestData
         {
             get
