@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Repository", "Northwind.Repository\Northwind.Repository.csproj", "{287B6BF8-AF10-494D-BFDA-1F54118A9AF2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Web", "Northwind.Web\Northwind.Web.csproj", "{FD83CEB3-FBB5-46AF-9B25-26DCD4F6E3D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Service", "Northwind.Service\Northwind.Service.csproj", "{B57E8A73-DA46-4983-A15C-B42A11C0280A}"
 EndProject
@@ -23,10 +21,6 @@ Global
 		{287B6BF8-AF10-494D-BFDA-1F54118A9AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{287B6BF8-AF10-494D-BFDA-1F54118A9AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{287B6BF8-AF10-494D-BFDA-1F54118A9AF2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD83CEB3-FBB5-46AF-9B25-26DCD4F6E3D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD83CEB3-FBB5-46AF-9B25-26DCD4F6E3D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD83CEB3-FBB5-46AF-9B25-26DCD4F6E3D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD83CEB3-FBB5-46AF-9B25-26DCD4F6E3D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B57E8A73-DA46-4983-A15C-B42A11C0280A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B57E8A73-DA46-4983-A15C-B42A11C0280A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B57E8A73-DA46-4983-A15C-B42A11C0280A}.Release|Any CPU.ActiveCfg = Release|Any CPU
