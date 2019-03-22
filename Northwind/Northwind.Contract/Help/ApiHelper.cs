@@ -91,10 +91,10 @@ namespace Northwind.Contract.Help
 
         public static T Api<T>(EnumApiServer apiServer, EnumContentType contentType, EnumApiMethodType apiMethodType, string methodName, string getParam, object parameter, bool isJson = true)
         {
-            // 如果有getParam，確保有加"?"
-            if (!string.IsNullOrWhiteSpace(getParam) && !getParam.StartsWith("?"))
+           
+            if (!string.IsNullOrWhiteSpace(getParam) && !getParam.StartsWith("/"))
             {
-                getParam = "?" + getParam.Trim();
+                getParam = "/" + getParam.Trim();
             }
             else if (string.IsNullOrWhiteSpace(getParam))
             {
